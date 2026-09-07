@@ -13,12 +13,19 @@ def num_each_char(booktext):
     return each_char
 
 def sort_on(item):
-    return item["num"]
+    return item[1]
 
 def chars_dict_to_sorted_list(chars_dict):
     sorted_list = []
 
-    for key, value in chars_dict.items():
-        sorted_list.append({"char": key, "num": value})
-    sorted_list.sort(reverse=True, key=sort_on)
+    for char in chars_dict:
+        count = chars_dict[char]
+        sorted_list.append((char, count))
+
+    sorted_list = sorted(
+        sorted_list,
+        key=sort_on,
+        reverse=True
+    )
+
     return sorted_list
